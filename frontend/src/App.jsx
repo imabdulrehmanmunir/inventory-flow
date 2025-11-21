@@ -23,7 +23,7 @@ export default function App() {
   const fetchProducts = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('https://inventory-flow-mz72.onrender.comproducts'); // Ensure this matches your backend port
+      const response = await axios.get('https://inventory-flow-mz72.onrender.com/products'); // Ensure this matches your backend port
       setProducts(response.data);
       setError('');
     } catch (err) {
@@ -74,12 +74,12 @@ export default function App() {
     try {
       if (isEditing) {
         // --- UPDATE LOGIC (PUT) ---
-        const response = await axios.put(`https://inventory-flow-mz72.onrender.comproducts/${editId}`, productData);
+        const response = await axios.put(`https://inventory-flow-mz72.onrender.com/products/${editId}`, productData);
         setProducts(products.map(p => (p._id === editId ? response.data.updatedProduct : p)))
         // Update the specific item in the list without refreshing
       } else {
         // --- CREATE LOGIC (POST) ---
-        const response = await axios.post('https://inventory-flow-mz72.onrender.comproducts', productData);
+        const response = await axios.post('https://inventory-flow-mz72.onrender.com/products', productData);
         setProducts([response.data, ...products]);
       }
       
