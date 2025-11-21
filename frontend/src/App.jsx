@@ -23,7 +23,7 @@ export default function App() {
   const fetchProducts = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/products'); // Ensure this matches your backend port
+      const response = await axios.get('https://inventory-flow-mz72.onrender.comproducts'); // Ensure this matches your backend port
       setProducts(response.data);
       setError('');
     } catch (err) {
@@ -74,12 +74,12 @@ export default function App() {
     try {
       if (isEditing) {
         // --- UPDATE LOGIC (PUT) ---
-        const response = await axios.put(`http://localhost:5000/products/${editId}`, productData);
+        const response = await axios.put(`https://inventory-flow-mz72.onrender.comproducts/${editId}`, productData);
         setProducts(products.map(p => (p._id === editId ? response.data.updatedProduct : p)))
         // Update the specific item in the list without refreshing
       } else {
         // --- CREATE LOGIC (POST) ---
-        const response = await axios.post('http://localhost:5000/products', productData);
+        const response = await axios.post('https://inventory-flow-mz72.onrender.comproducts', productData);
         setProducts([response.data, ...products]);
       }
       
@@ -94,7 +94,7 @@ export default function App() {
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure?")) return; // Simple confirmation
     try {
-        await axios.delete(`http://localhost:5000/products/${id}`); 
+        await axios.delete(`https://inventory-flow-mz72.onrender.comproducts/${id}`); 
         setProducts(products.filter((p) => p._id !== id)); 
     } catch (error) {
         console.error("Error deleting:", error);
